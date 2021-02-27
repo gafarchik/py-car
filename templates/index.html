@@ -97,7 +97,48 @@
     .text{
       color: #FFB800;
     }
+    .recstart{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      left: 31.4%;
+      height:15%;
+      width: 15%;
+      font-size:2vw;
+      border-radius: 10%;
+      color: #FFB800;
+      border-color: #FFB800;
+    }
+    .recstart{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      left: 31.4%;
+      height:7%;
+      width: 15%;
+      font-size:2vw;
+      border-radius: 10%;
+      color: #FFB800;
+      border-color: #FFB800;
+    }
+    .recstop{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 93%;
+      left: 31.4%;
+      height:7%;
+      width: 15%;
+      font-size:2vw;
+      border-radius: 10%;
+      color: #FFB800;
+      border-color: #FFB800;
+    }
   </style>
+  <script type="text/javascript">
+    function myFunction(){
+    alert("You button was pressed");
+};   
+  </script>
   <body>
     <img src="{{ url_for('static', filename='bg.png') }}" class="bg">
     <center><h1 class="text">Py-Car</h1></center>
@@ -107,5 +148,9 @@
     <button class="but2">↓</button>
     <button class="but3">←</button>
     <button class="but4">→</button>
+    <form method="post" action="{{ url_for('record') }}">
+      <input type="submit" name="Start" value="Start" class="recstart">
+      <input type="submit" name="Stop" value="Stop" class="recstop">
+    </form>
   </body>
 </html>
