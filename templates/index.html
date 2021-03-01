@@ -14,54 +14,54 @@
       height: 100%;
       opacity: 0.2;
     }
-  	.but1{
-  		background-color: rgba(0,0,0,.0);
-  		position: absolute;
-  		top: 85%;
-  		left: 1%;
-  		height:15%;
-  		width: 15%;
-  		font-size:2vw;
+    .but1{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      left: 1%;
+      height:15%;
+      width: 15%;
+      font-size:2vw;
       border-radius: 10%;
       color: #FFB800;
       border-color: #FFB800;
-  	}
-  	.but2{
-  		background-color: rgba(0,0,0,.0);
-  		position: absolute;
-  		top: 85%;
-  		left: 16.2%;
-  		height:15%;
-  		width: 15%;
-  		font-size:2vw;
+    }
+    .but2{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      left: 16.2%;
+      height:15%;
+      width: 15%;
+      font-size:2vw;
       border-radius: 10%;
       color: #FFB800;
       border-color: #FFB800;
-  	}
-  	.but3{
-  		background-color: rgba(0,0,0,.0);
-  		position: absolute;
-  		top: 85%;
-  		right: 16.2%;
-  		height:15%;
-  		width: 15%;
-  		font-size:2vw;
+    }
+    .but3{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      right: 16.2%;
+      height:15%;
+      width: 15%;
+      font-size:2vw;
       border-radius: 10%;
       color: #FFB800;
       border-color: #FFB800;
-  	}
-  	.but4{
-  		background-color: rgba(0,0,0,.0);
-  		position: absolute;
-  		top: 85%;
-  		right: 1%;
-  		height:15%;
-  		width: 15%;
-  		font-size:2vw;
+    }
+    .but4{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 85%;
+      right: 1%;
+      height:15%;
+      width: 15%;
+      font-size:2vw;
       border-radius: 10%;
       color: #FFB800;
       border-color: #FFB800;
-  	}
+    }
     .cam{
       width:90%; 
       height:70%;
@@ -133,6 +133,21 @@
       color: #FFB800;
       border-color: #FFB800;
     }
+    .fot{
+      background-color: rgba(0,0,0,.0);
+      position: absolute;
+      top: 93%;
+      left: 53.6%;
+      height:7%;
+      width: 15%;
+      font-size:2vw;
+      border-radius: 10%;
+      color: #FFB800;
+      border-color: #FFB800;
+    }
+    input:focus {
+    outline: none;
+    }
   </style>
   <script type="text/javascript">
     function myFunction(){
@@ -151,6 +166,9 @@
     <form method="post" action="{{ url_for('record') }}">
       <input type="submit" name="Start" value="Start" class="recstart">
       <input type="submit" name="Stop" value="Stop" class="recstop">
+    </form>
+    <form method="post" action="{{ url_for('photo') }}">
+      <input type="submit" name="Photo" value="Photo" class="fot">
     </form>
   </body>
 </html>
