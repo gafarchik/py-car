@@ -1,6 +1,9 @@
 import cv2
+import numpy as np
 camera = cv2.VideoCapture(0)
 num = 0
+vnum = 0
+vcheck = 1
 def gen_frames():  
         while True:
             success, frame = camera.read()
@@ -10,22 +13,25 @@ def gen_frames():
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-def rec_video(a):
-    fourcc = cv2.VideoWriter_fourcc(*'DIVX') 
-    video_writer = cv2.VideoWriter("output.avi", fourcc, 15, (680, 480))
-
-    # record video
-    while a<1:
+def stop_video():
+    global vcheck
+    vcheck -=1
+    print(vcheck)
+def video():
+    global vcheck
+    global vnum
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output'+str(vnum)+'.avi', fourcc, 15.0, (640,480))
+    vnum+=1
+    while vcheck==1:
         ret, frame = camera.read()
-        if ret:
-            video_writer.write(frame)
-
-        else:
-            break
-
+        if ret==True:
+            frame = cv2.flip(frame,180)
+        out.write(frame)
+        if vcheck == 0:
+        	break
     camera.release()
-    video_writer.release()
-    cv2.destroyAllWindows()
+    out.release()
 def take_photo():
     global num
     num+=1
