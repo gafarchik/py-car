@@ -1,5 +1,6 @@
 import cv2
 camera = cv2.VideoCapture(0)
+num = 0
 def gen_frames():  
         while True:
             success, frame = camera.read()
@@ -25,3 +26,8 @@ def rec_video(a):
     camera.release()
     video_writer.release()
     cv2.destroyAllWindows()
+def take_photo():
+    global num
+    num+=1
+    return_value, image = camera.read()
+    cv2.imwrite('pycar'+str(num)+'.png', image) 
