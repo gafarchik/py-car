@@ -13,7 +13,6 @@ def record():
             return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
         elif request.form.get('Stop')== 'Stop':
             stop_video()
-            index()
             return render_template('index.html')
             return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
         else:
