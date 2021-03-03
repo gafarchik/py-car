@@ -3,12 +3,19 @@ import numpy as np
 camera = cv2.VideoCapture(0)
 num = 0
 vnum = 0
+frontalface = cv2.CascadeClassifier('./cascades/frontalface.xml')
 def gen_frames():  
         while True:
             success, frame = camera.read()
             if not success:
                 break
             else:
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                frontalfaces = frontalface.detectMultiScale(gray, 1.3, 5)
+                for (x,y,w,h) in frontalfaces:
+                    frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+                    roi_gray = gray[y:y+h, x:x+w]
+                    roi_color = frame[y:y+h, x:x+w]
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
