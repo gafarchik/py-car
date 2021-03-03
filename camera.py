@@ -16,6 +16,7 @@ def gen_frames():
                     frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
                     roi_gray = gray[y:y+h, x:x+w]
                     roi_color = frame[y:y+h, x:x+w]
+                    cv2.putText(frame,'People', (x,y-8), cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
