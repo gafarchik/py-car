@@ -13,7 +13,7 @@
 		color: cyan;
 		background: rgba(0,0,0,0.0);
 		border: 2px solid;
-		height: 7.6%;
+		height: 8%;
 		width: 10%;
 		font-size: 2vw;
 		transition: 0.5s;
@@ -122,9 +122,9 @@
 	<h1 style="position: absolute;top: 20%;left: 15%;color:cyan;"id="tag">PY-CAR</h1>
 	<p style="position: absolute;top: 22%;left: 15%;color:cyan;font-size: 2vw;" id="control">▶ - start record video from camera<br>■ - stop record<br>📷 - take photo<br>↑ - move forward<br>↓ - move back(stop)<br>← - move left <br>→ - move right</p>
 	<form method="post" action="{{ url_for('redirect') }}">
-	<input class="download"name="Home"value="Home">
-	<input type="submit" name="start" value="Start" class="start">
-	<input class="start"type="submit"name="Start"value="Start"style="position: absolute; left: 15%;top: 60%;width: 20%;">
+	<button class="download"name="Home"value="Home">Home</button>
+	<button type="submit" name="start" value="Start" class="start">Start</button>
+	<button class="start"type="submit"name="Start"value="Start"style="position: absolute; left: 15%;top: 60%;width: 20%;">Start</button>
 	</form>
 </body>
 </html>
