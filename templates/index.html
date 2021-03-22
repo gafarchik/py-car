@@ -1,174 +1,130 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
     <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}" />
-    <title>RoboCode</title>
-  </head>
-  <style type="text/css">
-    body{
-      background-color: #000;
+	<title>RoboCode</title>
+</head>
+<style type="text/css">
+	.download{
+		position: fixed;
+		right: 10%;
+		top:0;
+		color: cyan;
+		background: rgba(0,0,0,0.0);
+		border: 2px solid;
+		height: 7.6%;
+		width: 10%;
+		font-size: 2vw;
+		transition: 0.5s;
+		text-align: center; 
+	}
+	.start{
+		position: fixed;
+		right: 0;
+		top:0;
+		color: cyan;
+		background: rgba(0,0,0,0.0);
+		border: 2px solid;
+		height: 8%;
+		width: 10%;
+		font-size: 2vw;
+		transition: 0.5s;
+	}
+	.download:hover{
+		background: #00bfbf;
+		color:#FFF;
+		border-color: #00bfbf;
+		transition: 0.5s;
+	}
+	.start:hover{
+		background: #00bfbf;
+		color:#FFF;
+		border-color: #00bfbf;
+		transition: 0.5s;
+	}
+	button:focus {
+        outline: none;
     }
-    .bg{
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      opacity: 0.2;
+    a{
+    	text-decoration: none;
     }
-    .but1{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      left: 1%;
-      height:15%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
+    .stop{
+    	position: fixed;
+		right: 0;
+		color: cyan;
+		background: rgba(0,0,0,0.0);
+		border: 2px solid;
+		height: 8%;
+		width: 10%;
+		font-size: 2vw;
+		transition: 0.5s;
+		display: none;
     }
-    .but2{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      left: 16.2%;
-      height:15%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .but3{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      right: 16.2%;
-      height:15%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .but4{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      right: 1%;
-      height:15%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .cam{
-      width:90%; 
-      height:70%;
-      position: absolute;
-      top: 10%;
-      left: 5%;
-      border:5px inset; 
-      border-color: #FFB800;
-    }
-    .but1:hover{
-      color:#000;
-      background-color: #FFB800;
-      transition: 0.5s;
-    }
-    .but2:hover{
-      color:#000;
-      background-color: #FFB800;
-      transition: 0.5s;
-    }
-    .but3:hover{
-      color:#000;
-      background-color: #FFB800;
-      transition: 0.5s;
-    }
-    .but4:hover{
-      color:#000;
-      background-color: #FFB800;
-      transition: 0.5s;
-    }
-    button:focus {
-    outline: none;
-    }
-    .text{
-      color: #FFB800;
-    }
-    .recstart{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      left: 31.4%;
-      height:15%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .recstart{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 85%;
-      left: 31.4%;
-      height:7%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .recstop{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 93%;
-      left: 31.4%;
-      height:7%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    .fot{
-      background-color: rgba(0,0,0,.0);
-      position: absolute;
-      top: 93%;
-      left: 53.6%;
-      height:7%;
-      width: 15%;
-      font-size:2vw;
-      border-radius: 10%;
-      color: #FFB800;
-      border-color: #FFB800;
-    }
-    input:focus {
-    outline: none;
-    }
-  </style>
-  <script type="text/javascript">
-    function myFunction(){
-    alert("You button was pressed");
-};   
-  </script>
-  <body>
-    <img src="{{ url_for('static', filename='bg.png') }}" class="bg">
-    <center><h1 class="text">Py-Car</h1></center>
-    <img src="{{ url_for('video_feed') }}" class="cam">
-
-    <button class="but1">↑</button>
-    <button class="but2">↓</button>
-    <button class="but3">←</button>
-    <button class="but4">→</button>
-    <form method="post" action="{{ url_for('record') }}">
-      <input type="submit" name="Start" value="Start" class="recstart">
-      <input type="submit" name="Stop" value="Stop" class="recstop">
-    </form>
-    <form method="post" action="{{ url_for('photo') }}">
-      <input type="submit" name="Photo" value="Photo" class="fot">
-    </form>
-  </body>
+    .stop:hover{
+		background: #00bfbf;
+		color:#FFF;
+		border-color: #00bfbf;
+		transition: 0.5s;
+	}
+	.cam{
+		position: fixed;
+		top: 11%;
+		left: 10%;
+		width: 80%;
+		height: 70%;
+		border:5px outset;
+		border-color: cyan;
+		display: none;
+	}
+	.btn{
+		color: cyan;
+		background: rgba(0,0,0,0.0);
+		border: 2px solid;
+		height: 10%;
+		width: 10%;
+		font-size: 3vw;
+		transition: 0.5s;
+		display: none;
+		border-radius: 10%;
+		text-align: center;
+	}
+	.btn:hover{
+		background: #00bfbf;
+		color:#FFF;
+		border-color: #00bfbf;
+		transition: 0.5s;
+	}
+	.recor{
+		color: cyan;
+		background: rgba(0,0,0,0.0);
+		border: 2px solid;
+		height: 8%;
+		width: 8%;
+		font-size: 2vw;
+		transition: 0.5s;
+		display: none;
+		border-radius: 10%;
+	}
+	.recor:hover{
+		background: #00bfbf;
+		color:#FFF;
+		border-color: #00bfbf;
+		transition: 0.5s;
+	}
+</style>
+<body>
+	<img src="{{ url_for('static', filename='bg.jpg') }}"style="position: absolute;top:-0.1px;left:-0.1px;height: 100%;width: 100%;">
+	<div style="position: absolute;top:-0.1px;left:-0.1px;height: 100%;width: 100%;background: #000;opacity: 0.91"></div>
+	<div style="background: rgba(0, 0, 0, 0.0);position: fixed;top: 0;left: 0;width: 100%;height: 8%;border-bottom: 2px solid;border-color: cyan;">
+		<h1 style="color:cyan;position: fixed; left:2%;"id="name">PY-CAR</h1>
+	</div>
+	<h1 style="position: absolute;top: 20%;left: 15%;color:cyan;"id="tag">PY-CAR</h1>
+	<p style="position: absolute;top: 22%;left: 15%;color:cyan;font-size: 2vw;" id="control">▶ - start record video from camera<br>■ - stop record<br>📷 - take photo<br>↑ - move forward<br>↓ - move back(stop)<br>← - move left <br>→ - move right</p>
+	<form method="post" action="{{ url_for('redirect') }}">
+	<input class="download"name="Home"value="Home">
+	<input type="submit" name="start" value="Start" class="start">
+	<input class="start"type="submit"name="Start"value="Start"style="position: absolute; left: 15%;top: 60%;width: 20%;">
+	</form>
+</body>
 </html>
