@@ -1,0 +1,155 @@
+<html><head>
+  <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+  <title>RoboCode</title>
+  <style type="text/css">
+  .home{
+    position: fixed;
+    right: 20%;
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 8%;
+    width: 10%;
+    font-size: 2vw;
+    transition: 0.5s;
+  }
+  .download{
+    position: fixed;
+    right: 10%;
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 8%;
+    width: 10%;
+    font-size: 2vw;
+    transition: 0.5s;
+  }
+  .start{
+    position: fixed;
+    right: 0;
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 8%;
+    width: 10%;
+    font-size: 2vw;
+    transition: 0.5s;
+  }
+  .home:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+  .download:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+  .start:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+  button:focus {
+        outline: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    .stop{
+      position: fixed;
+    right: 0;
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 8%;
+    width: 10%;
+    font-size: 2vw;
+    transition: 0.5s;
+    display: none;
+    }
+    .stop:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+  .cam{
+    position: fixed;
+    top: 11%;
+    left: 10%;
+    width: 80%;
+    height: 70%;
+    border:5px outset;
+    border-color: cyan;
+    display: none;
+  }
+  .btn{
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 10%;
+    width: 10%;
+    font-size: 3vw;
+    transition: 0.5s;
+    display: none;
+    border-radius: 10%;
+    text-align: center;
+  }
+  .btn:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+  .recor{
+    color: cyan;
+    background: rgba(0,0,0,0.0);
+    border: 2px solid;
+    height: 8%;
+    width: 8%;
+    font-size: 2vw;
+    transition: 0.5s;
+    display: none;
+    border-radius: 10%;
+  }
+  .recor:hover{
+    background: #00bfbf;
+    color:#FFF;
+    border-color: #00bfbf;
+    transition: 0.5s;
+  }
+</style></head>
+
+
+<body>
+  <img src="{{ url_for('static', filename='bg.jpg') }}" style="position: absolute;top:-0.1px;left:-0.1px;height: 100%;width: 100%;">
+  <div style="position: absolute;top:-0.1px;left:-0.1px;height: 100%;width: 100%;background: #000;opacity: 0.91"></div>
+  <div style="background: rgba(0, 0, 0, 0.0);position: fixed;top: 0;left: 0;width: 100%;height: 8%;border-bottom: 2px solid;border-color: cyan;">
+    <h1 style="color:cyan;position: fixed; left:2%;" id="name">PY-CAR</h1>
+    <form method="post" action="redirect">
+    <input type = "submit"name="Home" value="Home"class="download" id="home">
+    <input type="submit" name="Stop" value="Stop"class="stop" id="stop" style="display: block;">
+    </form>
+  </div>
+  <h1 style="position: absolute; top: 20%; left: 15%; color: cyan; display: none;" id="tag">PY-CAR</h1>
+  <img class="cam" src="{{ url_for('video_feed') }}" id="cam" style="display: block;">
+  <form method="post" action="">
+        <input type="submit" name="forward" value="↑" class="btn" style="position: fixed; top: 87%; left: 3%; display: block;" id="btnforward">
+        <input type="submit" name="back" value="↓" class="btn" style="position: fixed; top: 87%; left: 13.5%; display: block;" id="btnback">
+        <input type="submit" name="left" value="←" class="btn" style="position: fixed; top: 87%; right: 13.5%; display: block;" id="btnleft">
+        <input type="submit" name="right" value="→" class="btn" style="position: fixed; top: 87%; right: 3%; display: block;" id="btnright">
+    </form>
+    <form method="post" action="{{ url_for('record') }}">
+        <input type="submit" name="Start" value="▶" class="recor" id="rec" style="position: fixed; top: 30%; right: 1%; display: block;">
+        <input type="submit" name="Stop" value="■" class="recor" id="stoprec" style="position: fixed; top: 39%; right: 1%; display: block;">
+    </form>
+    <form method="post" action="{{ url_for('photo') }}">
+        <input onclick="start();" type="submit" name="Photo" value="📷" class="recor" id="photo" style="position: fixed; top: 48%; right: 1%; display: block;">
+    </form>
+
+</body></html>
