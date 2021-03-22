@@ -132,24 +132,24 @@
   <div style="background: rgba(0, 0, 0, 0.0);position: fixed;top: 0;left: 0;width: 100%;height: 8%;border-bottom: 2px solid;border-color: cyan;">
     <h1 style="color:cyan;position: fixed; left:2%;" id="name">PY-CAR</h1>
     <form method="post" action="redirect">
-    <input type = "submit"name="Home" value="Home"class="download" id="home">
-    <input type="submit" name="Stop" value="Stop"class="stop" id="stop" style="display: block;">
+    <button type = "submit"name="Home" value="Home"class="download" id="home">Home</button>
+    <button type="submit" name="Stop" value="Stop"class="stop" id="stop" style="display: block;">Stop</button>
     </form>
   </div>
   <h1 style="position: absolute; top: 20%; left: 15%; color: cyan; display: none;" id="tag">PY-CAR</h1>
   <img class="cam" src="{{ url_for('video_feed') }}" id="cam" style="display: block;">
   <form method="post" action="">
-        <input type="submit" name="forward" value="↑" class="btn" style="position: fixed; top: 87%; left: 3%; display: block;" id="btnforward">
-        <input type="submit" name="back" value="↓" class="btn" style="position: fixed; top: 87%; left: 13.5%; display: block;" id="btnback">
-        <input type="submit" name="left" value="←" class="btn" style="position: fixed; top: 87%; right: 13.5%; display: block;" id="btnleft">
-        <input type="submit" name="right" value="→" class="btn" style="position: fixed; top: 87%; right: 3%; display: block;" id="btnright">
+        <button type="submit" name="forward" value="↑" class="btn" style="position: fixed; top: 87%; left: 3%; display: block;" id="btnforward">↑</button>
+        <button type="submit" name="back" value="↓" class="btn" style="position: fixed; top: 87%; left: 13.5%; display: block;" id="btnback">↓</button>
+        <button type="submit" name="left" value="←" class="btn" style="position: fixed; top: 87%; right: 13.5%; display: block;" id="btnleft">←</button>
+        <button type="submit" name="right" value="→" class="btn" style="position: fixed; top: 87%; right: 3%; display: block;" id="btnright">→</button>
     </form>
     <form method="post" action="{{ url_for('record') }}">
-        <input type="submit" name="Start" value="▶" class="recor" id="rec" style="position: fixed; top: 30%; right: 1%; display: block;">
-        <input type="submit" name="Stop" value="■" class="recor" id="stoprec" style="position: fixed; top: 39%; right: 1%; display: block;">
+        <button type="submit" name="Start" value="▶" class="recor" id="rec" style="position: fixed; top: 30%; right: 1%; display: block;">▶</button>
+        <button type="submit" name="Stop" value="■" class="recor" id="stoprec" style="position: fixed; top: 39%; right: 1%; display: block;">■</button>
     </form>
     <form method="post" action="{{ url_for('photo') }}">
-        <input onclick="start();" type="submit" name="Photo" value="📷" class="recor" id="photo" style="position: fixed; top: 48%; right: 1%; display: block;">
+        <button type="submit" name="Photo" value="📷" class="recor" id="photo" style="position: fixed; top: 48%; right: 1%; display: block;">📷</button>
     </form>
 
 </body></html>
