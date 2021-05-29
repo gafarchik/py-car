@@ -138,11 +138,13 @@
   </div>
   <h1 style="position: absolute; top: 20%; left: 15%; color: cyan; display: none;" id="tag">PY-CAR</h1>
   <img class="cam" src="{{ url_for('video_feed') }}" id="cam" style="display: block;">
-  <form method="post" action="">
+  <form method="post" action="{{ url_for('move') }}">
         <button type="submit" name="forward" value="↑" class="btn" style="position: fixed; top: 87%; left: 3%; display: block;" id="btnforward">↑</button>
         <button type="submit" name="back" value="↓" class="btn" style="position: fixed; top: 87%; left: 13.5%; display: block;" id="btnback">↓</button>
         <button type="submit" name="left" value="←" class="btn" style="position: fixed; top: 87%; right: 13.5%; display: block;" id="btnleft">←</button>
         <button type="submit" name="right" value="→" class="btn" style="position: fixed; top: 87%; right: 3%; display: block;" id="btnright">→</button>
+        <button type="submit" name="stop" value="stop" class="btn" style="position: fixed; top: 87%; left: 24%; display: block;">stop</button>
+        <button type="submit" name="center" value="center" class="btn" style="position: fixed; top: 87%; right: 24%; display: block;">|</button>
     </form>
     <form method="post" action="{{ url_for('record') }}">
         <button type="submit" name="Start" value="▶" class="recor" id="rec" style="position: fixed; top: 30%; right: 1%; display: block;">▶</button>
