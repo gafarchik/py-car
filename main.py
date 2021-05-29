@@ -21,35 +21,50 @@ def redirect():
 @app.route('/',methods=['GET','POST'])
 def panel():
     return render_template("panel.html")
-@app.route('/move',methods=['GET','POST'])
-def move():
+@app.route('/movef',methods=['GET','POST'])
+def movef():
     if request.method == 'POST':
         if request.form.get('forward') == '↑':
             forwardDrive()
             return render_template('panel.html')
             return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-        elif request.form.get('back' )== '↓':
-            reverseDrive()
-            return render_template('panel.html')
-            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-        elif request.form.get('left' )== '←':
-            TurnLeft()
-            return render_template('panel.html')
-            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-        elif request.form.get('right')== '→':
-            TurnRight()
-            return render_template('panel.html')
-            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-        elif request.form.get('stop' )== 'stop':
-            allStop()
-            return render_template('panel.html')
-            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-        elif request.form.get('center') == 'center':
-            center()
-            return render_template('panel.html')
-            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
         else:
             pass # unknown
+@app.route('/moveb',methods=['GET','POST'])
+def moveb():
+    if request.method == 'POST':
+        if request.form.get('back' )== '↓':
+            reverseDrive()
+            return render_template('panel.html')
+            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/mover',methods=['GET','POST'])
+def mover():
+    if request.method == 'POST':
+        if request.form.get('right')== '→':
+            TurnRight()
+            return render_template('panel.html')
+            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/movel',methods=['GET','POST'])
+def movel():
+    if request.method == 'POST':
+        if request.form.get('left' )== '←':
+            TurnLeft()
+            return render_template('panel.html')
+            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/moves',methods=['GET','POST'])
+def moves():
+    if request.method == 'POST':
+        if request.form.get('stop')== 'stop':
+            allStop()
+            return render_template('panel.html')
+            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/movec',methods=['GET','POST'])
+def movec():
+    if request.method == 'POST':
+        if request.form.get('center') == 'center':
+            center()
+            return render_template('panel.html')
+            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/record', methods=['GET', 'POST'])
 def record():
     if request.method == 'POST':
