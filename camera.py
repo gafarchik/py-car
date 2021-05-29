@@ -1,10 +1,12 @@
-import cv2
-import numpy as np
-camera = cv2.VideoCapture(0)
-num = 0
-vnum = 0
-frontalface = cv2.CascadeClassifier('./cascades/frontalface.xml')
-def gen_frames():  
+#import cv2
+#import numpy as np
+#camera = cv2.VideoCapture(0)
+#num = 0
+#vnum = 0
+#frontalface = cv2.CascadeClassifier('./cascades/frontalface.xml')
+def gen_frames():
+    print("video")
+'''  
         while True:
             success, frame = camera.read()
             frame = cv2.flip(frame, 1)
@@ -21,8 +23,11 @@ def gen_frames():
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                '''
 class Recordvideo():	
     def video():
+        print("record")
+        '''
         global vnum
         global out
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -37,11 +42,18 @@ class Recordvideo():
             out.write(frame)
         camera.release()
         out.release()
+        '''
     def stop_video():
+        print("stop_record")
+        '''
         global out
         out.release()
+        '''
 def take_photo():
+    print("photo")
+    '''
     global num
     num+=1
     return_value, image = camera.read()
     cv2.imwrite('pycar'+str(num)+'.png', image) 
+    '''
