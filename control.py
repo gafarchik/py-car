@@ -21,6 +21,7 @@ def forwardDrive():
     AIN1 = 13
     AIN2 = 6
     GPIO.cleanup()
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(AIN1,GPIO.OUT)
     GPIO.setup(AIN2,GPIO.OUT)
     GPIO.output(AIN1,GPIO.HIGH)
