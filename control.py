@@ -1,54 +1,73 @@
 import RPi.GPIO as GPIO
 
-def allStop():
-    PWM_DRIVE_LEFT = 21
-    FORWARD_LEFT_PIN = 26
-    REVERSE_LEFT_PIN = 19
-    PWM_DRIVE_RIGHT = 5
-    FORWARD_RIGHT_PIN = 13
-    REVERSE_RIGHT_PIN = 6
-    GPIO.setmode(GPIO.BCM)
-    GPIO.cleanup()
-    GPIO.setup(FORWARD_LEFT_PIN, GPIO.OUT)
-    GPIO.setup(REVERSE_LEFT_PIN, GPIO.OUT)
-    GPIO.setup(FORWARD_RIGHT_PIN, GPIO.OUT)
-    GPIO.setup(REVERSE_RIGHT_PIN, GPIO.OUT)
-    GPIO.output(FORWARD_LEFT_PIN, GPIO.HIGH)
-    GPIO.output(REVERSE_LEFT_PIN, GPIO.HIGH)
-    GPIO.output(FORWARD_RIGHT_PIN, GPIO.HIGH)
-    GPIO.output(REVERSE_LEFT_PIN, GPIO.HIGH)
-def forwardDrive():
-    AIN1 = 13
-    AIN2 = 6
-    GPIO.cleanup()
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(AIN1,GPIO.OUT)
-    GPIO.setup(AIN2,GPIO.OUT)
-    GPIO.output(AIN1,GPIO.HIGH)
-    GPIO.output(AIN2,GPIO.LOW)
-def reverseDrive():
-    PWM_DRIVE_LEFT = 21
-    FORWARD_LEFT_PIN = 26
-    REVERSE_LEFT_PIN = 19
-    PWM_DRIVE_RIGHT = 5
-    FORWARD_RIGHT_PIN = 13
-    REVERSE_RIGHT_PIN = 6
-    GPIO.setmode(GPIO.BCM)
-    GPIO.cleanup()
-    GPIO.setup(FORWARD_LEFT_PIN, GPIO.OUT)
-    GPIO.setup(REVERSE_LEFT_PIN, GPIO.OUT)
-    GPIO.setup(FORWARD_RIGHT_PIN, GPIO.OUT)
-    GPIO.setup(REVERSE_RIGHT_PIN, GPIO.OUT)
-    GPIO.output(FORWARD_LEFT_PIN, GPIO.LOW)
-    GPIO.output(REVERSE_LEFT_PIN, GPIO.HIGH)
-    GPIO.output(FORWARD_RIGHT_PIN, GPIO.LOW)
-    GPIO.output(REVERSE_LEFT_PIN, GPIO.HIGH)
-def TurnLeft():
-    GPIO.PWM(PWM_DRIVE_LEFT,1000)
-    GPIO.PWM(PWM_DRIVE_RIGHT,100)
-def TurnRight():
-    GPIO.PWM(PWM_DRIVE_LEFT,100)
-    GPIO.PWM(PWM_DRIVE_RIGHT,1000)
-def center():
-    GPIO.PWM(PWM_DRIVE_LEFT,1000)
-    GPIO.PWM(PWM_DRIVE_RIGHT,1000)
+GPIO.setmode(GPIO.BCM)
+
+class drive:
+	in1 = 26
+	in2 = 13
+	pwm = 21
+	pwm1 = 5
+	standbyPin = 4
+
+	#Defaults
+	hertz = 1000
+	reverse = False #Reverse flips the direction of the motor
+
+	#Constructor
+	def __init__(self, in1, in2, pwm, pwm1,standbyPin, reverse):
+		self.in1 = in1
+		self.in2 = in2
+		self.pwm1 = pwm1 
+		self.pwm = pwm
+		self.standbyPin = standbyPin
+		self.reverse = reverse
+
+		GPIO.setup(in1,GPIO.OUT)
+		GPIO.setup(in2,GPIO.OUT)
+		GPIO.setup(pwm,GPIO.OUT)
+		GPIO.setup(pwm1,GPIO.OUT)
+		GPIO.setup(standbyPin,GPIO.OUT)
+		GPIO.output(standbyPin,GPIO.HIGH)
+
+	#Speed from -100 to 100
+	def movefor(self, speed):
+		#Negative speed for reverse, positive for forward
+		#If necessary use reverse parameter in constructor
+		dutyCycle = speed
+		if(speed < 0):
+			dutyCycle = dutyCycle * -1
+
+		if(self.reverse):
+			speed = speed * -1
+
+		if(speed > 0):
+			GPIO.output(self.in1,GPIO.HIGH)
+			GPIO.output(self.in2,GPIO.LOW)
+	def moveback(self,speed):
+		dutyCycle = speed
+		if(speed < 0):
+			dutyCycle = dutyCycle * -1
+
+		if(self.reverse):
+			speed = speed * -1
+
+		if(speed > 0):
+			GPIO.output(self.in1,GPIO.LOW)
+			GPIO.output(self.in2,GPIO.HIGH)
+	def moveright():
+		self.p = GPIO.PWM(pwm1, self.hertz)
+		self.p.start(1)
+	def moveleft():
+		self.p = GPIO.PWM(pwm, self.hertz)
+		self.p.start(1)
+	def brake(self):
+		self.p.ChangeDutyCycle(0)
+		GPIO.output(self.in1,GPIO.HIGH)
+		GPIO.output(self.in2,GPIO.HIGH)
+
+	def standby(self, value):
+		self.p.ChangeDutyCycle(0)
+		GPIO.output(self.standbyPin,value)
+
+	def __del__(self):
+		GPIO.cleanup()
