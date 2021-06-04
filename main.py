@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Response, redirect, url_for, request
 from camera import gen_frames, Recordvideo , take_photo
-from control import allStop,forwardDrive,reverseDrive,TurnLeft,TurnRight,center
+from control import *
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -25,8 +25,10 @@ def panel():
 def movef():
     if request.method == 'POST':
         if request.form.get('forward') == '↑':
-            forwardDrive()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.movefor(100)
             return render_template('panel.html')
+            return Response(forward.movefor(100))
             return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
         else:
             pass # unknown
@@ -34,37 +36,47 @@ def movef():
 def moveb():
     if request.method == 'POST':
         if request.form.get('back' )== '↓':
-            reverseDrive()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.moveback(100)
             return render_template('panel.html')
-            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(forward.moveback(100))
+            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/mover',methods=['GET','POST'])
 def mover():
     if request.method == 'POST':
         if request.form.get('right')== '→':
-            TurnRight()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.moveright(1000)
             return render_template('panel.html')
-            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(forward.moveright(1000))
+            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/movel',methods=['GET','POST'])
 def movel():
     if request.method == 'POST':
         if request.form.get('left' )== '←':
-            TurnLeft()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.moveleft(1000)
             return render_template('panel.html')
-            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(forward.moveleft(1000))
+            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/moves',methods=['GET','POST'])
 def moves():
     if request.method == 'POST':
         if request.form.get('stop')== 'stop':
-            allStop()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.brake()
             return render_template('panel.html')
-            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(forward.brake())
+            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/movec',methods=['GET','POST'])
 def movec():
     if request.method == 'POST':
         if request.form.get('center') == 'center':
-            center()
+            forward = drive(26,19,5,21,6,13,4,False)
+            forward.center()
             return render_template('panel.html')
-            #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(forward.center(100))
+            return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/record', methods=['GET', 'POST'])
 def record():
     if request.method == 'POST':
