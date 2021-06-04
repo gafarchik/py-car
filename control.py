@@ -34,7 +34,7 @@ class drive:
         GPIO.output(self.bin1,GPIO.LOW)
         GPIO.output(self.bin2,GPIO.LOW)
         GPIO.output(self.in1,GPIO.LOW)
-        GPIO.output(self.in2,GPIO.LOW)
+        GPIO.output(self.in2,GPIO.HIGH)
     def movefor(self, speed):
         dutyCycle = speed
         if(speed < 0):
@@ -51,8 +51,10 @@ class drive:
         if(self.reverse):
             speed = speed * -1
         if(speed > 0):
-            GPIO.output(self.in1,GPIO.HIGH)
-            GPIO.output(self.in2,GPIO.LOW)
+            p = GPIO.PWM(self.pwm1,100)
+            p.ChangeDutyCycle(100)
+            GPIO.output(self.in1,GPIO.LOW)
+            GPIO.output(self.in2,GPIO.HIGH)
     def moveright(self,hertz):
         GPIO.PWM(self.pwm1,1)
         GPIO.output(self.bin1,GPIO.LOW)
@@ -70,3 +72,5 @@ class drive:
 
     def __del__(self):
         GPIO.cleanup()
+
+
