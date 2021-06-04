@@ -63,6 +63,9 @@ class drive:
         GPIO.PWM(self.pwm1,1)
         GPIO.output(self.bin2,GPIO.LOW)
         GPIO.output(self.bin1,GPIO.HIGH)
+    def center(self,hertz):
+        GPIO.output(self.bin2,GPIO.LOW)
+        GPIO.output(self.bin1,GPIO.LOW)
     def brake(self):
         GPIO.output(self.in1,GPIO.LOW)
         GPIO.output(self.in2,GPIO.LOW)
@@ -72,5 +75,3 @@ class drive:
 
     def __del__(self):
         GPIO.cleanup()
-
-
